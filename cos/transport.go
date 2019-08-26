@@ -1,6 +1,7 @@
 package cos
 
 import (
+	"crypto/tls"
 	"net"
 	"net/http"
 	"time"
@@ -26,6 +27,7 @@ func newTransport(conn *Conn, config *Config) *http.Transport {
 		},
 		IdleConnTimeout:       httpTimeOut.IdleConnTimeout,
 		ResponseHeaderTimeout: httpTimeOut.HeaderTimeout,
+                TLSClientConfig:    &tls.Config{InsecureSkipVerify: true},
 	}
 	return transport
 }
