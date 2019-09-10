@@ -75,7 +75,7 @@ func (client Client) GetSTS(param STSReqParam) (STSReturn, error) {
 	var result STSReturn
 
 	appId := client.Config.APPID
-	bucketName := strings.Split(param.Bucket, "-")
+	//bucketName := strings.Split(param.Bucket, "-")
 	//resource := fmt.Sprintf("qcs::cos:%s:uid/%s:prefix//%s/%s", param.Region, appId, appId, bucketName[0])
 	resource := fmt.Sprintf("qcs::cos:%s:uid/%s:%s/*", param.Region, appId, param.Bucket)
 	statement := Statement{
