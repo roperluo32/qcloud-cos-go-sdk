@@ -11,7 +11,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"strings"
 )
 
 type (
@@ -76,7 +75,8 @@ func (client Client) GetSTS(param STSReqParam) (STSReturn, error) {
 
 	appId := client.Config.APPID
 	bucketName := strings.Split(param.Bucket, "-")
-	resource := fmt.Sprintf("qcs::cos:%s:uid/%s:prefix//%s/%s", param.Region, appId, appId, bucketName[0])
+	//resource := fmt.Sprintf("qcs::cos:%s:uid/%s:prefix//%s/%s", param.Region, appId, appId, bucketName[0])
+	resource := fmt.Sprintf("qcs::cos:%s:uid/%s:%s/*", param.Region, appId, param.Bucket)
 	statement := Statement{
 		Action: []string{"name/cos:*"},
 		Effect: "allow",
